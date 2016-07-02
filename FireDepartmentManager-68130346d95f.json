@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "fire-department-manager",
+  "private_key_id": "68130346d95fd999354dd6eb25f5f9052af9ef67",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCLdSz1K02UUX1C\n0cTCzjqSuxa5vj/BbkC7uYST2JCTlL5viM5gWnxrWaRXfEsQbKummUY2ncldgRSo\nJHQrptpKJeHgLPPJTArAjZcyKUSMS+NdALc4v7ed8/7Oue76ure5BKrJbcuMuqnQ\nau/6nBCv5oR12GMeQvTX315X+cg3S4S5A7MUHFEEkcDXQn4DtNbt7xPcTZnSR4H1\ndyil62nuH/Ig/I0etNfcavqktdPQc7GSS4wBQHtcJ8A/axw1JygLgUgebUwpo8dg\nfw4EwavWBNCvbvfQncEUgCcaSVyO9G61VI44hEWKZNxJ/hSqAiwY2sOah8P0+0+S\nncuLvnF3AgMBAAECggEAfRtkdpkfYsRsFAqtcnmiEEooi/9BoNyw0/gNGLk6kjrp\nUJOxWL00SvXDOfy2NojWwIFWfN62a9zF1EXHtfVcdRJg/UQ2e8ptBuq+zfA5n4bg\n9GkU9aMALYJbf8dLvcDN2vx13nhSF/DJMMEOgouJaNPq1vGFkftNPXAUaeYaGIei\nSXVg+6Qtjt7TJ5k8xUPuJj5PiX7IEpJYBQzYKbkUIoEmq+Q0DC8uUtYlzuZ1BTrV\nh7XMikbvmkmibfg0xol0dhAjuVFChBxVEoRjRaN6bMFeWlVbAjFYKF63A9tnbOAr\nZVHPBr1eeZlmp3JqMuPtYErVyYaOL1pMYGLyxpn66QKBgQDJ7Rl3lYOIphFdqGY9\n+0l/+4FWdGQLQ35GoFa4xZO+WAqU7lHRLVpk1ZoPedYPQfBb/nKqYDlR3RxwE74p\nQfkCcm2ewGXgbQH9CTFAWq8n7XtP40+yNvYthv52SxanbRE9eJyF+Gy8g3YKgvZ9\n72JSvqurPcFuvbnpaP0Dz3C4RQKBgQCwzZjgH+iLDELM+OjMKNRQjvvswUX+zf/Y\nPI+BKiVnweYtGb9/+EnlhZV+RGkhyYA1f1C/qltpxvifHpIi+EYT8G3py5hliyEK\n97Vf7ZzCJanCTdvNFt5Wn/XkIE2UsARB5PrKTMdNgAi7BLY3yZJw7FD9Blh1cBFX\noAcVNWEUiwKBgHV2w9XY2Adp87gz+iYcRAl7WSXd10TmIlMbetdJuESGGsHAUUAJ\nzgfSaiiOi4OcrCIXxsRt7Wo94gkgswJ1KlHOFw6+hYUkZH+6FTiGiFYFxDIY3Yei\niVq6qNRPogILZHgJ7aPRfA+9ubErthBUbTINUPfwmNG+9KNfO7A3wC6xAoGBAI73\nwg5CXyXJZV8gTAeDYKQ/6yF47GPuKluuJRD6hsLPPZTsxDj0CrVp/wfaw/TJXz5j\nVGWYmVEAz1zEOMHEZ86J1id/Nh2ukqquweDvYJpyIEL5+KpwOpxrv0eYg4OfjeHH\nCrF5wpQ921F3ru2PtzZPMfJZJkDYvX1Q70lMH9OfAoGAdfQ5NReDIcUqgcB0TXdE\ndWl4UWUhqi1OjaUYfaHzIT2Qpe9vBvFOEwPPxyIJYjpPVWGLiKIrg/sd9K0E4dQs\n+Z9Xc1QZepz9+5RobDhuEaXHBxrisZhXJMMKIQ2li/8IgflJO/THcDWR/00iFJvD\nCBDFieN0PL3+iR4QC4S+EhQ=\n-----END PRIVATE KEY-----\n",
+  "client_email": "message-server@fire-department-manager.iam.gserviceaccount.com",
+  "client_id": "104722530917935625463",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/message-server%40fire-department-manager.iam.gserviceaccount.com"
+}

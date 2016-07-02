@@ -1,0 +1,25 @@
+{
+  "name": "WhosEnRoute",
+  "version": "0.0.1",
+  "main": "forever.js",
+  "dependencies": {
+    "dateformat": "^1.0.12",
+    "firebase": "^3.0.5",
+    "forever-monitor": "^1.7.0",
+    "http": "0.0.0",
+    "mail-notifier": "^0.3.0",
+    "moment": "^2.13.0",
+    "moment-timezone": "^0.5.4",
+    "node-xmpp-server": "^2.2.0",
+    "nodemailer": "^2.4.2",
+    "request": "^2.72.0"
+  },
+  "engines": {
+    "node": "4.4.5"
+  },
+  "scripts": {
+    "start": "node forever.js",
+    "monitor": "nodemon forever.js",
+    "deploy": "gcloud app deploy"
+  }
+}
