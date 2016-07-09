@@ -73,6 +73,7 @@ function writeDispatch(sender, subject, message, date, department) {
 }
 
 function sendDispatchNotification(sender, subject, message, department) {
+  sendiOSNotifications(sender, subject, message, department);
   var requestData = {
     "data": {
         "notification-type": "incident",
@@ -81,6 +82,45 @@ function sendDispatchNotification(sender, subject, message, department) {
       },
     "to": "/topics/incidents"
     //"to" : "ehsGir5Kn6Y:APA91bGIs94I97j9qzyeXDbxhz_EXycliTG_tYTCoBqTS5WtlpiB9JwtfcPqoBs_kvNnrlCEr2Q978lG5li3nd164LlZGqH0aTne9Y4UQrbk0u4RTTbWg5B067iluWki911sYTHCBr0T"
+  }
+
+  // QPX REST API URL (I censored my api key)
+  url = "https://fcm.googleapis.com/fcm/send"
+
+  // fire request
+  request({
+    url: url,
+    method: "POST",
+    headers: {
+      'content-type': 'application/json',
+      'Authorization': 'key=AIzaSyD0Ds_GDlH0SO4UdoqnAg921lt1GsSZU8w'
+    },
+    json: requestData
+  }, function (error, response, body) {
+    if (!error && response.statusCode === 200) {
+      console.log(body)
+    }
+    else {
+
+      console.log("error: " + error)
+      console.log("response.statusCode: " + response.statusCode)
+      console.log("response.statusText: " + response.statusText)
+    }
+  })
+}
+
+function sendiOSNotifications(sender, subject, message, department) {
+  var requestData = {
+    "to": "/topics/incidents-ios",
+    "notification": {
+      "body": "New Incident: " + subject + " | " + message,
+      "title": "Who's En Route?",
+      "click_action": "RESPOND_CATEGORY"
+    },
+    "content_available": true
+
+    //"to" : "ehsGir5Kn6Y:APA91bGIs94I97j9qzyeXDbxhz_EXycliTG_tYTCoBqTS5WtlpiB9JwtfcPqoBs_kvNnrlCEr2Q978lG5li3nd164LlZGqH0aTne9Y4UQrbk0u4RTTbWg5B067iluWki911sYTHCBr0T"
+    //"to" : "d_Onh85JxaI:APA91bFuBOP7jogo2A9_ckLH-DJdohzKy6C6Sopk02DodzlmBK6DKYe2lBeAOfQ8YuDCDT3Xsqu3D76PS56GRGQDsqca9mTMHPCB7_KAwRrIITjr4hFRDFYQq7QBvvmAX4a0VbD083uL"
   }
 
   // QPX REST API URL (I censored my api key)
@@ -173,7 +213,7 @@ function loadDepartments() {
           } else {
             console.log('No settings found for user: ' + memberVal.name);
           }
-          console.log('\n\n');
+          console.log('\n');
 
           for (var i = 0; i < membersList.length; i++) {
             if (membersList[i].key == member.key) {
@@ -183,7 +223,7 @@ function loadDepartments() {
           membersList.push(member);
         });
       });
-      console.log(childsnapshot.val());
+      //console.log(childsnapshot.val());
 
       //TODO CREATE LISTENER FOR EACH DEPARTMENT + GET ALL MEMBERS WITH TXTS ENABLED.
       var imap = {
@@ -194,6 +234,9 @@ function loadDepartments() {
         tls: true,// use secure connection
         tlsOptions: { rejectUnauthorized: false }
       };
+      if (department.messaging.email == "nil") {
+          return;
+      }
       notifier(imap).on('mail', function(mail) {
         console.log('\n' + 'NEW EMAIL FROM: ' + mail.from[0].address + ' | SUBJECT: ' + mail.subject + " | TEXT: " + mail.text + ' | DISPATCHRECEIVERS: ' + textAddresses);
         if (mail.from[0].address == department.messaging.dispatch) {
@@ -263,4 +306,22 @@ function loadDepartments() {
   }, function (errorObject) {
     console.log("The read failed: " + errorObject.code);
   });
+}
+
+function newDepartment() {
+  // A post entry.
+  var postData = {
+    name: "Youngsville Fire Department"
+  };
+  // Get a key for a new Post.
+  var newPostKey = firebase.database().ref().child('departments').push().key;
+  // Write the new post's data simultaneously in the posts list and the user's post list.
+  var updates = {};
+  updates['/departments/' + newPostKey] = postData;
+
+  //updates['/departments/' + department + '/messages/' + newPostKey] = true;
+  //updates['/departments/' + department + '/activeIncident'] = true;
+  //sendDispatchNotification(sender, subject, message, department)
+  //
+  return firebase.database().ref().update(updates);
 }
