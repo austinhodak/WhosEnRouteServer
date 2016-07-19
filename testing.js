@@ -1,42 +1,17 @@
-// var request = require("request");
-// sendDispatchNotification(null, null, null, null);
-// function sendDispatchNotification(sender, subject, message, department) {
-//   var requestData = {
-//     "data": {
-//         "notification-type": "incident",
-//         "incidentTitle": "MVA-TEST-MVA",
-//         "incidentDesc": "THIS IS A TEST MESSAGE, TEST."
-//       },
-//     //"to": "/topics/incidents"
-//     "to" : "c2Fbntt-sf0:APA91bFnTvSMHCr2KzxAbmfIJcSSpiTc5tUYDbcBB5U57pOQWvyXJBJs-iBMq-ssxtA_btMoXbkyCfK-KYUZbMxRJ8K0p1w9X4EWzqaDH0GyFBFFxiRTkOYWQOMkMXcsD417jcixksOz"
-//   }
-//
-//   // QPX REST API URL (I censored my api key)
-//   url = "https://fcm.googleapis.com/fcm/send"
-//
-//   // fire request
-//   request({
-//     url: url,
-//     method: "POST",
-//     headers: {
-//       'content-type': 'application/json',
-//       'Authorization': 'key=AIzaSyD0Ds_GDlH0SO4UdoqnAg921lt1GsSZU8w'
-//     },
-//     json: requestData
-//   }, function (error, response, body) {
-//     if (!error && response.statusCode === 200) {
-//       console.log(body)
-//     }
-//     else {
-//
-//       console.log("error: " + error)
-//       console.log("response.statusCode: " + response.statusCode)
-//       console.log("response.statusText: " + response.statusText)
-//     }
-//   })
-// }
-var moment = require('moment');
+var texts = ["Loc:16241 ROUTE 62 XSt:MAPLE LN REDBUD LN Grid:L08D Units: Rmk:STRUCTURE FIRE UNDER THE HOUSE.\n\n", "Loc:35210 ROUTE 6 XSt:TUSSEY LN NELSON HILL RD Grid:D08B Units: Rmk:60 YEAR OLD MALE FAINT,VOMITING, 31-D-4\n\n"]
 
-var now = new Date();
-moment().format('YYYY/MM/DD HH:mm:ss');
-console.log(now);
+for (var i = 0; i < texts.length; i++) {
+
+  var testRE = texts[i].match("Loc:(.*)XSt");
+  if (testRE) {
+    console.log(testRE[1]);
+  } else {
+    var testRE2 = texts[i].match("(.*)XSt");
+    if (testRE2) {
+      console.log(testRE2[1]);
+    } else
+    console.log('No address found.');
+  }
+}
+
+console.log(30000/1000);

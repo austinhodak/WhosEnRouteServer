@@ -15,10 +15,10 @@ var request = require("request");
 
 var http = require('http');
 
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello World\n');
-}).listen(8080);
+// http.createServer(function (req, res) {
+//   res.writeHead(200, {'Content-Type': 'text/plain'});
+//   res.end('Hello World\n');
+// }).listen(8080);
 
 console.log('Server running on port ' + process.env.PORT);
 
@@ -67,7 +67,7 @@ function writeDispatch(sender, subject, message, date, department) {
 
   updates['/departments/' + department + '/messages/' + newPostKey] = true;
   updates['/departments/' + department + '/activeIncident'] = true;
-  sendDispatchNotification(sender, subject, message, department)
+  //sendDispatchNotification(sender, subject, message, department)
   //
   return firebase.database().ref().update(updates);
 }
@@ -239,7 +239,7 @@ function loadDepartments() {
       }
       notifier(imap).on('mail', function(mail) {
         console.log('\n' + 'NEW EMAIL FROM: ' + mail.from[0].address + ' | SUBJECT: ' + mail.subject + " | TEXT: " + mail.text + ' | DISPATCHRECEIVERS: ' + textAddresses);
-        if (mail.from[0].address == department.messaging.dispatch) {
+        if (mail.from[0].address == "wc911text@warren-county.net") {
           writeDispatch(mail.from[0].address, mail.subject, mail.text, moment().tz('America/New_York').format('YYYY/MM/DD HH:mm:ss'), childsnapshot.key);
           sendTexts(mail.from[0].address, mail.subject, mail.text, textAddresses);
         } else {
@@ -300,7 +300,7 @@ function loadDepartments() {
         }
       }).on('connected', function() {
         console.log(department.messaging.email + ' :Mail Server Connected! Listening for new emails!');
-        console.log(textAddresses);
+        //console.log(textAddresses);
       }).start();
     });
   }, function (errorObject) {
