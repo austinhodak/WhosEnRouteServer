@@ -67,7 +67,7 @@ function writeDispatch(sender, subject, message, date, department) {
 
   updates['/departments/' + department + '/messages/' + newPostKey] = true;
   updates['/departments/' + department + '/activeIncident'] = true;
-  //sendDispatchNotification(sender, subject, message, department)
+  sendDispatchNotification(sender, subject, message, department)
   //
   return firebase.database().ref().update(updates);
 }
@@ -173,9 +173,7 @@ function loadDepartments() {
   var ref = db.ref("departments");
   // Attach an asynchronous callback to read the data at our posts reference
   ref.once("value", function(snapshot) {
-
     snapshot.forEach(function(childsnapshot) {
-
       var deparmentRef = firebase.database().ref('departments/' + childsnapshot.key).child('members');
       var textAddresses = [];
       var phoneNumbers = [];
