@@ -84,7 +84,7 @@ function startNotifier(objectSnap) {
     n.start();
   }).on('mail',function(mail){
     var time = moment().tz('America/New_York').format('YYYY/MM/DD HH:mm:ss');
-    console.log(time + '\n' + object.name + ' -- NEW EMAIL FROM: ' + mail.from[0].address + ' | SUBJECT: ' + mail.subject + " | TEXT: " + mail.text + "-- END MESSAGE\n");
+    console.log(time + '\n' + object.name + ' -- NEW EMAIL FROM: ' + mail.from[0].address + ' | SUBJECT: ' + mail.subject + " | TEXT: " + mail.text + " -- END MESSAGE\n");
     if (mail.from[0].address == object.messaging.dispatch) {
       //Email is from dispatch, do the STUFF :/
       writeDispatch(mail.from[0].address, mail.subject, mail.text, moment().tz('America/New_York').format('YYYY/MM/DD HH:mm:ss'), objectSnap.key);
