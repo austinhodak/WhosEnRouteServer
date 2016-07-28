@@ -84,7 +84,7 @@ function startNotifier(objectSnap) {
     n.start();
   }).on('mail',function(mail){
     var time = moment().tz('America/New_York').format('YYYY/MM/DD HH:mm:ss');
-    console.log(time + '\n' + object.name + ' -- NEW EMAIL FROM: ' + mail.from[0].address + ' | SUBJECT: ' + mail.subject + " | TEXT: " + mail.text + " -- END MESSAGE\n");
+    console.log( '\n' + time + '\n' + object.name + ' -- NEW EMAIL FROM: ' + mail.from[0].address + ' | SUBJECT: ' + mail.subject + " | TEXT: " + mail.text + " -- END MESSAGE\n");
     if (mail.from[0].address == object.messaging.dispatch) {
       //Email is from dispatch, do the STUFF :/
       writeDispatch(mail.from[0].address, mail.subject, mail.text, moment().tz('America/New_York').format('YYYY/MM/DD HH:mm:ss'), objectSnap.key);
@@ -171,7 +171,7 @@ function writeDispatch(sender, subject, message, date, department) {
   firebase.database().ref().update(updates).then(function(snapshot) {
     // The Promise was "fulfilled" (it succeeded).
     console.log("====== Dispatch Saved to Datbase! Sending Notifications! ======");
-    if (department == "riKzg8eeHdh4a4hSz9JQGUh2lgp1") {
+    if (department === "riKzg8eeHdh4a4hSz9JQGUh2lgp1") {
       sendDispatchNotification(sender, subject, message, department);
     }
   }, function(error) {
@@ -183,15 +183,14 @@ function writeDispatch(sender, subject, message, date, department) {
 //notifications
 function sendDispatchNotification(sender, subject, message, department) {
   sendiOSNotifications(sender, subject, message, department);
-  var channel = "/topics/incidents-" + department;
+  var channel = "'incidents-" + department + "'";
   var requestData = {
+    "condition": "'incidents' in topics || " + channel + " in topics",
     "data": {
       "notification-type": "incident",
       "incidentTitle": subject,
       "incidentDesc": message
-    },
-    "to": "/topics/incidents",
-    "to": channel
+    }
   }
 
   url = "https://fcm.googleapis.com/fcm/send"
@@ -219,8 +218,7 @@ function sendDispatchNotification(sender, subject, message, department) {
 function sendiOSNotifications(sender, subject, message, department) {
   var channel = "/topics/incidents-ios-" + department;
   var requestData = {
-    "to": "/topics/incidents-ios",
-    "to": channel,
+    "condition": "'incidents-ios' in topics || " + channel + " in topics",
     "notification": {
       "body": "New Incident: " + subject + " | " + message,
       "title": "Who's En Route?",

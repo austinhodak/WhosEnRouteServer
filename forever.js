@@ -1,8 +1,7 @@
 var forever = require('forever-monitor');
-
-var child = new (forever.Monitor)('main.js', {
+var child = new (forever.Monitor)('dispatch.js', {
   silent: false,
-  args: []
+  args: ['--color']
 });
 
 child.start();
