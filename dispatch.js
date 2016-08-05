@@ -157,7 +157,8 @@ function writeDispatch(sender, subject, message, date, department) {
     message: message,
     date: date,
     department: department,
-    activeIncident: true
+    activeIncident: true,
+    server: 'PC 1'
   };
   // Get a key for a new Post.
   var dispatchKey = firebase.database().ref().child('messages').push().key;
