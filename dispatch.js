@@ -81,6 +81,7 @@ function startNotifier(objectSnap) {
   };
   var n = notifier(imap);
   n.on('end', function () { // session closed
+    console.log("LISTENER ENDED, RESTARTING.");
     n.start();
   }).on('mail',function(mail){
     var time = moment().tz('America/New_York').format('YYYY/MM/DD HH:mm:ss');
