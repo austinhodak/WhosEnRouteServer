@@ -1,23 +1,21 @@
-var noble = require('noble');
-var uuid = 'e2c56db5dffb48d2b060d0f5a71096e0';
-var major = 0; // 0x0000 - 0xffff
-var minor = 0; // 0x0000 - 0xffff
-var measuredPower = -59; // -128 - 127
-var Bleacon = require('bleacon');
-Bleacon.startAdvertising('e2c56db5dffb48d2b060d0f5a71096e1', 654, 2, -59);
+var notifier = require('mail-notifier');
+var nodemailer = require('nodemailer');
+var firebase = require("firebase");
+var dateFormat = require('dateformat');
+var moment = require('moment-timezone');
+var xmpp = require('node-xmpp-server');
+var request = require("request");
+var http = require('http');
+var colors = require('colors');
 
-// noble.on('stateChange', function(callback){
-//   noble.startScanning();
-// });
-// noble.on('scanStart', function(){
-//   console.log("Scan Started!");
-// });
-// noble.on('discover', function(callback){
-//   console.log(callback);
-//   callback.connect(function(error) {
-//
-//   });
-//   callback.once('connect', function() {
-//     console.log("Connected");
-//   });
-// });
+var time = moment.tz('2016-08-19 13:10:00', 'America/New_York')
+
+var diff = moment().diff(time, 'minutes');
+
+//console.log(diff);
+
+if(diff > 15) {
+  console.log('Old Message')
+} else {
+  console.log(diff);
+}
